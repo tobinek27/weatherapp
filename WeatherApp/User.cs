@@ -19,7 +19,7 @@ public class User
     private static readonly object lockObj = new();
     
 
-    public static bool Register(string username, string password)
+    /*public static bool Register(string username, string password)
     {
         if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             throw new ArgumentException("Username and password cannot be empty.");
@@ -34,7 +34,7 @@ public class User
 
         SaveUsers();
         return true;
-    }
+    }*/
 
     public static bool Login(string username, string password)
     {
@@ -43,29 +43,32 @@ public class User
         return users.Any(u => u.Username == username && u.PasswordHash == passwordHash);
     }
 
-    private static void LoadUsers()
+    public static List<User> LoadUsers()
     {
-        lock (lockObj)
-        {
-            if (!File.Exists(UserFilePath))
-            {
-                File.WriteAllText(UserFilePath, JsonSerializer.Serialize(new List<User>()));
-            }
+        if (!File.Exists(UserFilePath))
+            return new List<User>();
 
-            string jsonData = File.ReadAllText(UserFilePath);
-            users.Clear();
-            users.AddRange(JsonSerializer.Deserialize<List<User>>(jsonData) ?? new List<User>());
-        }
+        string jsonData = File.ReadAllText(UserFilePath);
+        return JsonSerializer.Deserialize<List<User>>(jsonData) ?? new List<User>();
+    }
+    
+    public static void SaveUsers(List<User> users)
+    {
+        string jsonData = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(UserFilePath, jsonData);
     }
 
-    private static void SaveUsers()
+    /*private void SaveUser(User newUser)
     {
         lock (lockObj)
         {
+            var users = LoadUsers();
+            users.Add(newUser);
             string jsonData = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+
             File.WriteAllText(UserFilePath, jsonData);
         }
-    }
+    }*/
 
     public static string HashPassword(string password)
     {
@@ -82,16 +85,6 @@ public class User
         string hashedPassword = HashPassword(password);
         return hashedPassword == storedPasswordHash;
     }
-    
-    /*static User()
-    {
-        LoadUsers();
-    }*/
-
-    /*public User()
-    {
-        LoadUsers();
-    }*/
 
     public User()
     {

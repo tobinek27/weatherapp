@@ -21,7 +21,7 @@ namespace WeatherApp
             if (!File.Exists(UserFilePath))
             {
                 var emptyUserList = new List<User>();
-                SaveUsers(emptyUserList);
+                User.SaveUsers(emptyUserList);
             }
         }
 
@@ -36,7 +36,7 @@ namespace WeatherApp
                 return;
             }
 
-            var users = LoadUsers();
+            var users = User.LoadUsers();
 
             if (users.Exists(u => u.Username == username))
             {
@@ -46,13 +46,13 @@ namespace WeatherApp
 
             var hashedPassword = User.HashPassword(password);
             users.Add(new User { Username = username, PasswordHash = hashedPassword });
-            SaveUsers(users);
+            User.SaveUsers(users);
 
             MessageBox.Show("Registration successful! You can now log in.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             txtUsername.Text = string.Empty;
             txtPassword.Text = string.Empty;
         }
-
+        
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text.Trim();
@@ -60,11 +60,11 @@ namespace WeatherApp
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Username and password cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Username and password can't be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            var users = LoadUsers();
+            var users = User.LoadUsers();
             var user = users.Find(u => u.Username == username);
 
             if (user == null || !User.VerifyPassword(password, user.PasswordHash))
@@ -75,20 +75,11 @@ namespace WeatherApp
 
             user.LoggedIn = true;
             MessageBox.Show($"Login successful! Welcome back {user.Username}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
 
-        private List<User> LoadUsers()
-        {
-            if (!File.Exists(UserFilePath)) return new List<User>();
-
-            string jsonData = File.ReadAllText(UserFilePath);
-            return JsonSerializer.Deserialize<List<User>>(jsonData) ?? new List<User>();
-        }
-
-        private void SaveUsers(List<User> users)
-        {
-            string jsonData = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(UserFilePath, jsonData);
+            // open the second app window
+            DashboardForm dashboard = new DashboardForm(user);
+            dashboard.Show();
+            this.Hide();
         }
     }
 }

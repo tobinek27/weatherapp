@@ -31,14 +31,12 @@ partial class Form1
         this.MaximizeBox = false;
         this.BackColor = Color.LightSteelBlue;
 
-        // Picture Box (Left Half)
         this.pictureBox = new System.Windows.Forms.PictureBox();
         this.pictureBox.Image = Image.FromFile("img/funny-cat-12.jpg");
         this.pictureBox.Location = new System.Drawing.Point(0, 0);
         this.pictureBox.Size = new System.Drawing.Size(this.ClientSize.Width / 2, this.ClientSize.Height);
         this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 
-        // Heading Label
         this.lblHeading = new System.Windows.Forms.Label();
         this.lblHeading.Text = "WeatherApp Login/Register";
         this.lblHeading.Font = new Font("Segoe UI", 18, FontStyle.Bold);
@@ -46,7 +44,6 @@ partial class Form1
         this.lblHeading.Location = new System.Drawing.Point(this.ClientSize.Width / 2 + 50, 50);
         this.lblHeading.Size = new System.Drawing.Size(600, 50);
 
-        // Username Label
         this.lblUsername = new System.Windows.Forms.Label();
         this.lblUsername.Text = "Username:";
         this.lblUsername.Location = new System.Drawing.Point(this.ClientSize.Width / 2 + 50, 150);
@@ -54,7 +51,6 @@ partial class Form1
         this.lblUsername.Font = new Font("Segoe UI", 12);
         this.lblUsername.ForeColor = Color.Black;
 
-        // Username TextBox
         this.txtUsername = new System.Windows.Forms.TextBox();
         this.txtUsername.Location = new System.Drawing.Point(this.ClientSize.Width / 2 + 150, 150);
         this.txtUsername.Size = new System.Drawing.Size(250, 30);
@@ -62,7 +58,6 @@ partial class Form1
         this.txtUsername.BorderStyle = BorderStyle.FixedSingle;
         this.txtUsername.BackColor = Color.White;
 
-        // Password Label
         this.lblPassword = new System.Windows.Forms.Label();
         this.lblPassword.Text = "Password:";
         this.lblPassword.Location = new System.Drawing.Point(this.ClientSize.Width / 2 + 50, 200);
@@ -70,7 +65,6 @@ partial class Form1
         this.lblPassword.Font = new Font("Segoe UI", 12);
         this.lblPassword.ForeColor = Color.Black;
 
-        // Password TextBox
         this.txtPassword = new System.Windows.Forms.TextBox();
         this.txtPassword.Location = new System.Drawing.Point(this.ClientSize.Width / 2 + 150, 200);
         this.txtPassword.Size = new System.Drawing.Size(250, 30);
@@ -79,7 +73,6 @@ partial class Form1
         this.txtPassword.BorderStyle = BorderStyle.FixedSingle;
         this.txtPassword.BackColor = Color.White;
 
-        // Login Button
         this.btnLogin = new System.Windows.Forms.Button();
         this.btnLogin.Text = "Login";
         this.btnLogin.Location = new System.Drawing.Point(this.ClientSize.Width / 2 + 150, 250);
@@ -91,7 +84,6 @@ partial class Form1
         this.btnLogin.FlatAppearance.BorderSize = 0;
         this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
 
-        // Register Button
         this.btnRegister = new System.Windows.Forms.Button();
         this.btnRegister.Text = "Register";
         this.btnRegister.Location = new System.Drawing.Point(this.ClientSize.Width / 2 + 280, 250);
