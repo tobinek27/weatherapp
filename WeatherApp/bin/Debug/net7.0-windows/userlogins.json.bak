@@ -1,0 +1,14 @@
+[
+  {
+    "Username": "test",
+    "PasswordHash": null
+  },
+  {
+    "Username": "johndoe",
+    "PasswordHash": "ltljLzY1ZMwwMlIUCc8iqFLyAy7sCZ7VlnwNAAzsYHo="
+  },
+  {
+    "Username": "janedoe",
+    "PasswordHash": "ltljLzY1ZMwwMlIUCc8iqFLyAy7sCZ7VlnwNAAzsYHo="
+  }
+]

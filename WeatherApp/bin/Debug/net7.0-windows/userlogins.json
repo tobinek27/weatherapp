@@ -1,0 +1,22 @@
+[
+  {
+    "Username": "johndoe",
+    "PasswordHash": "ltljLzY1ZMwwMlIUCc8iqFLyAy7sCZ7VlnwNAAzsYHo=",
+    "LoggedIn": false
+  },
+  {
+    "Username": "janedoe",
+    "PasswordHash": "ltljLzY1ZMwwMlIUCc8iqFLyAy7sCZ7VlnwNAAzsYHo=",
+    "LoggedIn": false
+  },
+  {
+    "Username": "test",
+    "PasswordHash": "n4bQgYhMfWWaL\u002BqgxVrQFaO/TxsrC4Is0V1sFbDwCgg=",
+    "LoggedIn": false
+  },
+  {
+    "Username": "testt",
+    "PasswordHash": "gi5U033TfYN3btiqwF5FeOiyAdjz\u002BjZr3GC3Uii8g18=",
+    "LoggedIn": false
+  }
+]
