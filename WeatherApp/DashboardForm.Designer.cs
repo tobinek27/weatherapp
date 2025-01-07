@@ -14,6 +14,8 @@ namespace WeatherApp
         private RichTextBox rtbWeatherInfo; // RichTextBox for styled weather info
         private Button btnSaveConfig; // Button to save configuration
         private TextBox txtCity; // TextBox for city input
+        private TextBox txtCountry; // TextBox for country input
+
 
         protected override void Dispose(bool disposing)
         {
@@ -31,7 +33,7 @@ namespace WeatherApp
             this.components = new System.ComponentModel.Container();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.cmbCountry = new System.Windows.Forms.ComboBox();
+            //this.cmbCountry = new System.Windows.Forms.ComboBox();
             this.btnFetchWeather = new System.Windows.Forms.Button();
             this.rtbWeatherInfo = new System.Windows.Forms.RichTextBox();
             this.btnSaveConfig = new System.Windows.Forms.Button();
@@ -53,12 +55,6 @@ namespace WeatherApp
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
-
-            this.cmbCountry.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.cmbCountry.Location = new System.Drawing.Point(300, 70);
-            this.cmbCountry.Name = "cmbCountry";
-            this.cmbCountry.Size = new System.Drawing.Size(200, 28);
-            this.cmbCountry.TabIndex = 2;
 
             this.btnFetchWeather.Location = new System.Drawing.Point(350, 110);
             this.btnFetchWeather.Name = "btnFetchWeather";
@@ -86,7 +82,6 @@ namespace WeatherApp
             this.btnSaveConfig.UseVisualStyleBackColor = true;
             this.btnSaveConfig.Click += new System.EventHandler(this.BtnSaveConfig_Click);
 
-            // txtCity
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtCity.Location = new System.Drawing.Point(300, 140);
             this.txtCity.Name = "txtCity";
@@ -94,14 +89,21 @@ namespace WeatherApp
             this.txtCity.TabIndex = 3;
             this.Controls.Add(this.txtCity);
 
-            // Update layout for existing components
+            this.txtCountry = new System.Windows.Forms.TextBox();
+            this.txtCountry.Location = new System.Drawing.Point(300, 100);
+            this.txtCountry.Name = "txtCountry";
+            this.txtCountry.Size = new System.Drawing.Size(200, 28);
+            this.txtCountry.TabIndex = 2;
+            this.Controls.Add(this.txtCountry);
+
+            this.txtCity.Location = new System.Drawing.Point(300, 140);
+            
             this.btnFetchWeather.Location = new System.Drawing.Point(350, 180);
             this.rtbWeatherInfo.Location = new System.Drawing.Point(150, 220);
-
             
             this.Controls.Add(this.lblWelcome);
             this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.cmbCountry);
+            //this.Controls.Add(this.cmbCountry);
             this.Controls.Add(this.btnFetchWeather);
             this.Controls.Add(this.rtbWeatherInfo);
             this.Controls.Add(this.btnSaveConfig);
