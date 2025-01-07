@@ -33,5 +33,10 @@
     "Username": "testik",
     "PasswordHash": "T2tJvNo\u002B7EWluZb09eeayE6YlDQn4IXN9WxA28JSqVU=",
     "LoggedIn": false
+  },
+  {
+    "Username": "teodor",
+    "PasswordHash": "SUHWmT7pVTKqMXEYfsBj84uEIdk13vwBuqMgABL6Op4=",
+    "LoggedIn": false
   }
 ]
