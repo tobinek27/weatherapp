@@ -98,8 +98,8 @@ partial class Form1
         
         this.btnQuit = new System.Windows.Forms.Button();
         this.btnQuit.Text = "Quit";
-        this.btnQuit.Location = new System.Drawing.Point(this.ClientSize.Width / 2 + 150, 300); // Place the button below the other buttons
-        this.btnQuit.Size = new System.Drawing.Size(250, 40); // Size it similarly to the other buttons
+        this.btnQuit.Location = new System.Drawing.Point(this.ClientSize.Width / 2 + 150, 300);
+        this.btnQuit.Size = new System.Drawing.Size(250, 40);
         this.btnQuit.Font = new Font("Segoe UI", 12, FontStyle.Bold);
         this.btnQuit.BackColor = Color.IndianRed;
         this.btnQuit.ForeColor = Color.White;
@@ -117,6 +117,6 @@ partial class Form1
         this.Controls.Add(this.btnRegister);
         this.Controls.Add(this.btnQuit);
 
-        this.Text = "WeatherApp - Login/Register";
+        this.Text = "WeatherApp - Login Menu";
     }
 }

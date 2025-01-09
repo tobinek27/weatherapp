@@ -9,8 +9,6 @@ using System.Text.Json;
 
 public class User
 {
-    //private const string "userlogins.json" = "userlogins.json";
-
     public string Username { get; set; }
     public string PasswordHash { get; set; }
     public bool LoggedIn { get; set; }

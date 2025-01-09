@@ -10,8 +10,6 @@ namespace WeatherApp
     public partial class DashboardForm : Form
     {
         private readonly User _user;
-        // file path je WeatherApp/user_configs/<username>_config
-        //private string configFilePath => Path.Combine("user_configs", $"{_user.Username}_config.xml");
 
         public DashboardForm(User user)
         {
@@ -19,8 +17,6 @@ namespace WeatherApp
             _user = user;
             lblWelcome.Text = $"Welcome to the dashboard, {user.Username}!";
 
-            //private string configFilePath => Path.Combine("user_configs", $"{_user.Username}_config.xml");
-            //string configFilePath = Path.Combine("user_configs", $"{_user.Username}_config.xml");
             SetupCountryAutocomplete();
         }
         
@@ -119,7 +115,6 @@ namespace WeatherApp
 
             try
             {
-                //string directoryPath = Path.GetDirectoryName(configFilePath);
                 string directoryPath = Path.GetDirectoryName(_user.GetUserConfigFile());
                 if (!Directory.Exists(directoryPath))
                 {

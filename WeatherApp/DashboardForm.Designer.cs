@@ -56,11 +56,11 @@ namespace WeatherApp
             this.tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
             this.tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
             this.tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
-            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));  // Welcome label
-            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));   // Country input
-            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));   // City input
-            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));   // Buttons row
-            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));   // Weather info (larger row for RichTextBox)
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
             this.tableLayoutPanel.Dock = DockStyle.Fill;
 
             this.tableLayoutPanel.Controls.Add(this.lblWelcome, 0, 0);
