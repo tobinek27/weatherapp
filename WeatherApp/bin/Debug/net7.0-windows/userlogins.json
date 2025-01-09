@@ -38,5 +38,15 @@
     "Username": "teodor",
     "PasswordHash": "SUHWmT7pVTKqMXEYfsBj84uEIdk13vwBuqMgABL6Op4=",
     "LoggedIn": false
+  },
+  {
+    "Username": "rrr",
+    "PasswordHash": "ErDw3K77EMAqg6qa2wJZeN21US3ATrOd9oEcamv5dww=",
+    "LoggedIn": false
+  },
+  {
+    "Username": "ttt",
+    "PasswordHash": "P3xUVx\u002Bu4CTj/WhgPFyV9qTI73OjmIQLl08/V3N6EW8=",
+    "LoggedIn": false
   }
 ]

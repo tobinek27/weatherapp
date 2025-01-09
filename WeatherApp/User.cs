@@ -9,66 +9,39 @@ using System.Text.Json;
 
 public class User
 {
-    private const string UserFilePath = "userlogins.json";
+    //private const string "userlogins.json" = "userlogins.json";
 
     public string Username { get; set; }
     public string PasswordHash { get; set; }
     public bool LoggedIn { get; set; }
 
     private static readonly List<User> users = new();
-    private static readonly object lockObj = new();
-    
-
-    /*public static bool Register(string username, string password)
-    {
-        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            throw new ArgumentException("Username and password cannot be empty.");
-
-        if (users.Any(u => u.Username == username))
-            return false;
-
-        string passwordHash = HashPassword(password);
-
-        var newUser = new User { Username = username, PasswordHash = passwordHash };
-        users.Add(newUser);
-
-        SaveUsers();
-        return true;
-    }*/
 
     public static bool Login(string username, string password)
     {
         string passwordHash = HashPassword(password);
-
         return users.Any(u => u.Username == username && u.PasswordHash == passwordHash);
     }
 
+    public string GetUserConfigFile()
+    {
+        return Path.Combine("user_configs", $"{Username}_config.xml");
+    }
+    
     public static List<User> LoadUsers()
     {
-        if (!File.Exists(UserFilePath))
+        if (!File.Exists("userlogins.json"))
             return new List<User>();
 
-        string jsonData = File.ReadAllText(UserFilePath);
+        string jsonData = File.ReadAllText("userlogins.json");
         return JsonSerializer.Deserialize<List<User>>(jsonData) ?? new List<User>();
     }
     
     public static void SaveUsers(List<User> users)
     {
         string jsonData = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
-        File.WriteAllText(UserFilePath, jsonData);
+        File.WriteAllText("userlogins.json", jsonData);
     }
-
-    /*private void SaveUser(User newUser)
-    {
-        lock (lockObj)
-        {
-            var users = LoadUsers();
-            users.Add(newUser);
-            string jsonData = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
-
-            File.WriteAllText(UserFilePath, jsonData);
-        }
-    }*/
 
     public static string HashPassword(string password)
     {
@@ -88,7 +61,6 @@ public class User
 
     public User()
     {
-        
     }
     
     public User(string username, string passwordHash)
@@ -103,5 +75,4 @@ public class User
         PasswordHash = passwordHash;
         LoggedIn = loggedIn;
     }
-    
 }

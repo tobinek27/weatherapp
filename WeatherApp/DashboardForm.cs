@@ -11,19 +11,22 @@ namespace WeatherApp
     {
         private readonly User _user;
         // file path je WeatherApp/user_configs/<username>_config
-        private string ConfigFilePath => Path.Combine("user_configs", $"{_user.Username}_config.xml");
+        //private string configFilePath => Path.Combine("user_configs", $"{_user.Username}_config.xml");
 
         public DashboardForm(User user)
         {
             InitializeComponent();
             _user = user;
             lblWelcome.Text = $"Welcome to the dashboard, {user.Username}!";
+
+            //private string configFilePath => Path.Combine("user_configs", $"{_user.Username}_config.xml");
+            //string configFilePath = Path.Combine("user_configs", $"{_user.Username}_config.xml");
             SetupCountryAutocomplete();
         }
         
         private void SetupCountryAutocomplete()
         {
-            var countries = new[] { "Czechia", "USA", "Canada", "Germany", "France", "Spain", "India", "Japan" };
+            var countries = new[] { "Czechia", "USA", "Canada", "Germany", "France", "Spain", "India", "Japan"};
             var autoComplete = new AutoCompleteStringCollection();
             autoComplete.AddRange(countries);
 
@@ -116,7 +119,8 @@ namespace WeatherApp
 
             try
             {
-                string directoryPath = Path.GetDirectoryName(ConfigFilePath);
+                //string directoryPath = Path.GetDirectoryName(configFilePath);
+                string directoryPath = Path.GetDirectoryName(_user.GetUserConfigFile());
                 if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
@@ -127,7 +131,7 @@ namespace WeatherApp
                     new XElement("EnteredCity", enteredCity)
                 );
 
-                config.Save(ConfigFilePath);
+                config.Save(_user.GetUserConfigFile());
 
                 MessageBox.Show("Configuration saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -139,11 +143,12 @@ namespace WeatherApp
         
         private void LoadConfiguration()
         {
-            if (!File.Exists(ConfigFilePath)) return;
+            string configFilePath = _user.GetUserConfigFile();
+            if (!File.Exists(configFilePath)) return;
 
             try
             {
-                XElement config = XElement.Load(ConfigFilePath);
+                XElement config = XElement.Load(configFilePath);
                 string savedCountry = config.Element("EnteredCountry")?.Value;
                 string savedCity = config.Element("EnteredCity")?.Value;
 
