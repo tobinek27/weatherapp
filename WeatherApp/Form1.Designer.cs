@@ -11,6 +11,7 @@ partial class Form1
     private System.Windows.Forms.Label lblPassword;
     private System.Windows.Forms.Label lblHeading;
     private System.Windows.Forms.PictureBox pictureBox;
+    private System.Windows.Forms.Button btnQuit;
 
     protected override void Dispose(bool disposing)
     {
@@ -95,6 +96,17 @@ partial class Form1
         this.btnRegister.FlatAppearance.BorderSize = 0;
         this.btnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
         
+        this.btnQuit = new System.Windows.Forms.Button();
+        this.btnQuit.Text = "Quit";
+        this.btnQuit.Location = new System.Drawing.Point(this.ClientSize.Width / 2 + 150, 300); // Place the button below the other buttons
+        this.btnQuit.Size = new System.Drawing.Size(250, 40); // Size it similarly to the other buttons
+        this.btnQuit.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+        this.btnQuit.BackColor = Color.IndianRed;
+        this.btnQuit.ForeColor = Color.White;
+        this.btnQuit.FlatStyle = FlatStyle.Flat;
+        this.btnQuit.FlatAppearance.BorderSize = 0;
+        this.btnQuit.Click += new System.EventHandler(this.BtnQuit_Click);
+        
         this.Controls.Add(this.pictureBox);
         this.Controls.Add(this.lblHeading);
         this.Controls.Add(this.lblUsername);
@@ -103,6 +115,7 @@ partial class Form1
         this.Controls.Add(this.txtPassword);
         this.Controls.Add(this.btnLogin);
         this.Controls.Add(this.btnRegister);
+        this.Controls.Add(this.btnQuit);
 
         this.Text = "WeatherApp - Login/Register";
     }

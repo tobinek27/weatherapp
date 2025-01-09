@@ -81,5 +81,11 @@ namespace WeatherApp
             dashboard.Show();
             this.Hide();
         }
+        
+        private void BtnQuit_Click(object sender, EventArgs e)
+        {
+            // Close the application when Quit button is clicked
+            Application.Exit();
+        }
     }
 }
