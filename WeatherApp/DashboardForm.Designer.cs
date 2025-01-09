@@ -1,4 +1,6 @@
+using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace WeatherApp
@@ -8,13 +10,13 @@ namespace WeatherApp
         private IContainer components = null;
         private Label lblWelcome;
         private Button btnLogout;
-        private ComboBox cmbCountry;
         private Button btnFetchWeather;
         private RichTextBox rtbWeatherInfo;
         private Button btnSaveConfig;
+        private Button btnLoadConfig;
         private TextBox txtCity;
         private TextBox txtCountry;
-
+        private TableLayoutPanel tableLayoutPanel;
 
         protected override void Dispose(bool disposing)
         {
@@ -32,84 +34,76 @@ namespace WeatherApp
             this.components = new System.ComponentModel.Container();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
-            //this.cmbCountry = new System.Windows.Forms.ComboBox();
             this.btnFetchWeather = new System.Windows.Forms.Button();
             this.rtbWeatherInfo = new System.Windows.Forms.RichTextBox();
             this.btnSaveConfig = new System.Windows.Forms.Button();
+            this.btnLoadConfig = new System.Windows.Forms.Button();
+            this.txtCity = new System.Windows.Forms.TextBox();
+            this.txtCountry = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Text = "DashboardForm";
 
             this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Location = new System.Drawing.Point(300, 20);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(200, 20);
-            this.lblWelcome.TabIndex = 0;
+            this.lblWelcome.Text = "Welcome to the dashboard, test!";
+            this.lblWelcome.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.lblWelcome.TextAlign = ContentAlignment.MiddleCenter;
 
-            this.btnLogout.Location = new System.Drawing.Point(350, 400);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(100, 40);
-            this.btnLogout.TabIndex = 1;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
+            this.tableLayoutPanel.ColumnCount = 3;
+            this.tableLayoutPanel.RowCount = 5;
+            this.tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            this.tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            this.tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));  // Welcome label
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));   // Country input
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));   // City input
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));   // Buttons row
+            this.tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));   // Weather info (larger row for RichTextBox)
+            this.tableLayoutPanel.Dock = DockStyle.Fill;
 
-            this.btnFetchWeather.Location = new System.Drawing.Point(350, 110);
-            this.btnFetchWeather.Name = "btnFetchWeather";
-            this.btnFetchWeather.Size = new System.Drawing.Size(100, 30);
-            this.btnFetchWeather.TabIndex = 3;
+            this.tableLayoutPanel.Controls.Add(this.lblWelcome, 0, 0);
+            this.tableLayoutPanel.SetColumnSpan(this.lblWelcome, 3);
+            this.tableLayoutPanel.Controls.Add(this.txtCountry, 1, 1);
+            this.tableLayoutPanel.Controls.Add(this.txtCity, 1, 2);
+            this.tableLayoutPanel.Controls.Add(this.btnFetchWeather, 0, 3);
+            this.tableLayoutPanel.Controls.Add(this.btnSaveConfig, 1, 3);
+            this.tableLayoutPanel.Controls.Add(this.btnLoadConfig, 2, 3);
+            this.tableLayoutPanel.Controls.Add(this.rtbWeatherInfo, 0, 4);
+            this.tableLayoutPanel.SetColumnSpan(this.rtbWeatherInfo, 3);
+            this.tableLayoutPanel.Controls.Add(this.btnLogout, 1, 5);
+
+            this.txtCountry.Size = new System.Drawing.Size(200, 28);
+            this.txtCountry.PlaceholderText = "Enter Country";
+
+            this.txtCity.Size = new System.Drawing.Size(200, 28);
+            this.txtCity.PlaceholderText = "Enter City";
+
             this.btnFetchWeather.Text = "Get Weather";
             this.btnFetchWeather.UseVisualStyleBackColor = true;
             this.btnFetchWeather.Click += new System.EventHandler(this.BtnFetchWeather_Click);
 
-            this.rtbWeatherInfo = new System.Windows.Forms.RichTextBox();
-            this.rtbWeatherInfo.Location = new System.Drawing.Point(150, 160);
-            this.rtbWeatherInfo.Name = "rtbWeatherInfo";
-            this.rtbWeatherInfo.ReadOnly = true;
-            this.rtbWeatherInfo.Size = new System.Drawing.Size(500, 200);
-            this.rtbWeatherInfo.TabIndex = 4;
-            this.rtbWeatherInfo.Text = "";
-            this.rtbWeatherInfo.Font = new System.Drawing.Font("Segoe UI", 12, System.Drawing.FontStyle.Regular);
-            this.rtbWeatherInfo.ScrollBars = RichTextBoxScrollBars.Vertical;
-
-            this.btnSaveConfig.Location = new System.Drawing.Point(350, 50);
-            this.btnSaveConfig.Name = "btnSaveConfig";
-            this.btnSaveConfig.Size = new System.Drawing.Size(100, 30);
-            this.btnSaveConfig.TabIndex = 5;
             this.btnSaveConfig.Text = "Save Config";
-            this.btnSaveConfig.UseVisualStyleBackColor = true;
             this.btnSaveConfig.BackColor = Color.LightBlue;
+            this.btnSaveConfig.UseVisualStyleBackColor = true;
             this.btnSaveConfig.Click += new System.EventHandler(this.BtnSaveConfig_Click);
 
-            this.txtCity = new System.Windows.Forms.TextBox();
-            this.txtCity.Location = new System.Drawing.Point(300, 140);
-            this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(200, 28);
-            this.txtCity.TabIndex = 3;
-            this.Controls.Add(this.txtCity);
+            this.btnLoadConfig.Text = "Load Config";
+            this.btnLoadConfig.UseVisualStyleBackColor = true;
+            this.btnLoadConfig.Click += new System.EventHandler(this.BtnLoadConfig_Click);
 
-            this.txtCountry = new System.Windows.Forms.TextBox();
-            this.txtCountry.Location = new System.Drawing.Point(300, 100);
-            this.txtCountry.Name = "txtCountry";
-            this.txtCountry.Size = new System.Drawing.Size(200, 28);
-            this.txtCountry.TabIndex = 2;
-            this.Controls.Add(this.txtCountry);
+            this.rtbWeatherInfo.ReadOnly = true;
+            this.rtbWeatherInfo.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.rtbWeatherInfo.ScrollBars = RichTextBoxScrollBars.Vertical;
+            this.rtbWeatherInfo.Dock = DockStyle.Fill;
 
-            this.txtCity.Location = new System.Drawing.Point(300, 140);
-            
-            this.btnFetchWeather.Location = new System.Drawing.Point(350, 180);
-            this.rtbWeatherInfo.Location = new System.Drawing.Point(150, 220);
-            
-            this.Controls.Add(this.lblWelcome);
-            this.Controls.Add(this.btnLogout);
-            //this.Controls.Add(this.cmbCountry);
-            this.Controls.Add(this.btnFetchWeather);
-            this.Controls.Add(this.rtbWeatherInfo);
-            this.Controls.Add(this.btnSaveConfig);
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
 
+            this.Controls.Add(this.tableLayoutPanel);
             this.ResumeLayout(false);
-            this.PerformLayout();
         }
 
         #endregion

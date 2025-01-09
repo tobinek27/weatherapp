@@ -19,7 +19,6 @@ namespace WeatherApp
             _user = user;
             lblWelcome.Text = $"Welcome to the dashboard, {user.Username}!";
             SetupCountryAutocomplete();
-            LoadConfiguration();
         }
         
         private void SetupCountryAutocomplete()
@@ -153,16 +152,16 @@ namespace WeatherApp
 
                 if (!string.IsNullOrWhiteSpace(savedCity))
                     txtCity.Text = savedCity;
-
-                if (!string.IsNullOrWhiteSpace(savedCountry) || !string.IsNullOrWhiteSpace(savedCity))
-                {
-                    BtnFetchWeather_Click(null, null);
-                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading configuration: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void BtnLoadConfig_Click(object sender, EventArgs e)
+        {
+            LoadConfiguration();
         }
 
         private void BtnLogout_Click(object sender, EventArgs e)
