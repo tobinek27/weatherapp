@@ -10,7 +10,8 @@ namespace WeatherApp
     public partial class DashboardForm : Form
     {
         private readonly User _user;
-        private const string ConfigFilePath = "user_config.xml";
+        // file path je WeatherApp/user_configs/<username>_config
+        private string ConfigFilePath => Path.Combine("user_configs", $"{_user.Username}_config.xml");
 
         public DashboardForm(User user)
         {
@@ -107,7 +108,7 @@ namespace WeatherApp
         {
             string enteredCountry = txtCountry.Text.Trim();
             string enteredCity = txtCity.Text.Trim();
-            
+    
             if (string.IsNullOrWhiteSpace(enteredCountry) && string.IsNullOrWhiteSpace(enteredCity))
             {
                 MessageBox.Show("Please enter a city or country to save.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -116,10 +117,17 @@ namespace WeatherApp
 
             try
             {
+                string directoryPath = Path.GetDirectoryName(ConfigFilePath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
                 var config = new XElement("Configuration",
                     new XElement("EnteredCountry", enteredCountry),
                     new XElement("EnteredCity", enteredCity)
                 );
+
                 config.Save(ConfigFilePath);
 
                 MessageBox.Show("Configuration saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

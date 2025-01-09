@@ -6,15 +6,14 @@ namespace WeatherApp
     partial class DashboardForm
     {
         private IContainer components = null;
-        private Label lblWelcome; // Welcome label
-        private Button btnLogout; // Logout button
-        private ComboBox cmbCountry; // Dropdown for country selection
-        private Button btnFetchWeather; // Button to fetch weather
-        //private RichTextBox rtbWeatherInfo; // RichTextBox to display formatted weather info
-        private RichTextBox rtbWeatherInfo; // RichTextBox for styled weather info
-        private Button btnSaveConfig; // Button to save configuration
-        private TextBox txtCity; // TextBox for city input
-        private TextBox txtCountry; // TextBox for country input
+        private Label lblWelcome;
+        private Button btnLogout;
+        private ComboBox cmbCountry;
+        private Button btnFetchWeather;
+        private RichTextBox rtbWeatherInfo;
+        private Button btnSaveConfig;
+        private TextBox txtCity;
+        private TextBox txtCountry;
 
 
         protected override void Dispose(bool disposing)
@@ -74,12 +73,13 @@ namespace WeatherApp
             this.rtbWeatherInfo.Font = new System.Drawing.Font("Segoe UI", 12, System.Drawing.FontStyle.Regular);
             this.rtbWeatherInfo.ScrollBars = RichTextBoxScrollBars.Vertical;
 
-            this.btnSaveConfig.Location = new System.Drawing.Point(350, 370);
+            this.btnSaveConfig.Location = new System.Drawing.Point(350, 50);
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.Size = new System.Drawing.Size(100, 30);
             this.btnSaveConfig.TabIndex = 5;
             this.btnSaveConfig.Text = "Save Config";
             this.btnSaveConfig.UseVisualStyleBackColor = true;
+            this.btnSaveConfig.BackColor = Color.LightBlue;
             this.btnSaveConfig.Click += new System.EventHandler(this.BtnSaveConfig_Click);
 
             this.txtCity = new System.Windows.Forms.TextBox();
