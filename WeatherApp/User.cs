@@ -13,14 +13,23 @@ public class User
     public string PasswordHash { get; set; }
     public bool LoggedIn { get; set; }
 
-    private static readonly List<User> users = new();
+    //private static readonly List<User> users = new();
 
-    public static bool Login(string username, string password)
+    /*public static bool Login(string username, string password)
     {
         string passwordHash = HashPassword(password);
         return users.Any(u => u.Username == username && u.PasswordHash == passwordHash);
-    }
+    }*/
 
+    public static void InitializeUserFile() // move this method into the User.cs class
+    {
+        if (!File.Exists("userlogins.json"))
+        {
+            var emptyUserList = new List<User>();
+            SaveUsers(emptyUserList);
+        }
+    }
+    
     public string GetUserConfigFile()
     {
         //return Path.Combine("user_configs", $"{Username}_config.xml");

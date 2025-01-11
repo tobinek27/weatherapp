@@ -47,7 +47,7 @@ namespace WeatherApp
             this.Text = "DashboardForm";
 
             this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Text = "Welcome to the dashboard, test!";
+            //this.lblWelcome.Text = "welcome to the dashboard, test!"; test nahradit username uzivatele
             this.lblWelcome.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblWelcome.TextAlign = ContentAlignment.MiddleCenter;
 

@@ -8,21 +8,10 @@ namespace WeatherApp
 {
     public partial class Form1 : Form
     {
-        private const string UserFilePath = "userlogins.json";
-
         public Form1()
         {
             InitializeComponent();
-            InitializeUserFile();
-        }
-
-        private void InitializeUserFile()
-        {
-            if (!File.Exists(UserFilePath))
-            {
-                var emptyUserList = new List<User>();
-                User.SaveUsers(emptyUserList);
-            }
+            User.InitializeUserFile();
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)
@@ -32,7 +21,7 @@ namespace WeatherApp
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Username and password cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Username and password can't be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

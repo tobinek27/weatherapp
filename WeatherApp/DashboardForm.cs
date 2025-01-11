@@ -9,13 +9,13 @@ namespace WeatherApp
 {
     public partial class DashboardForm : Form
     {
-        private readonly User _user;
+        private readonly User _activeUser;
 
         public DashboardForm(User user)
         {
             InitializeComponent();
-            _user = user;
-            lblWelcome.Text = $"Welcome to the dashboard, {user.Username}!";
+            _activeUser = user;
+            lblWelcome.Text = $"Welcome to the dashboard, {_activeUser.Username}!";
 
             SetupCountryAutocomplete();
         }
@@ -48,7 +48,7 @@ namespace WeatherApp
 
             btnFetchWeather.Text = "Fetching...";
             btnFetchWeather.Enabled = false;
-            rtbWeatherInfo.Text = "Fetching weather... Please wait.";
+            rtbWeatherInfo.Text = "fetching the weather... please wait";
 
             try
             {
@@ -58,7 +58,7 @@ namespace WeatherApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error fetching weather: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"error fetching weather: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -75,7 +75,7 @@ namespace WeatherApp
             HttpResponseMessage response = await client.GetAsync(apiUrl);
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Failed to fetch weather data.");
+                throw new Exception("failed to fetch weather data.");
             }
 
             return await response.Content.ReadAsStringAsync();
@@ -98,7 +98,7 @@ namespace WeatherApp
             }
             catch
             {
-                return "Error formatting weather data.";
+                return "error during formatting of the weather data";
             }
         }
 
@@ -115,7 +115,7 @@ namespace WeatherApp
 
             try
             {
-                string directoryPath = Path.GetDirectoryName(_user.GetUserConfigFile());
+                string directoryPath = Path.GetDirectoryName(_activeUser.GetUserConfigFile());
                 if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
@@ -126,7 +126,7 @@ namespace WeatherApp
                     new XElement("EnteredCity", enteredCity)
                 );
 
-                config.Save(_user.GetUserConfigFile());
+                config.Save(_activeUser.GetUserConfigFile());
 
                 MessageBox.Show("Configuration saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -138,7 +138,7 @@ namespace WeatherApp
         
         private void LoadConfiguration()
         {
-            string configFilePath = _user.GetUserConfigFile();
+            string configFilePath = _activeUser.GetUserConfigFile();
             if (!File.Exists(configFilePath)) return;
 
             try
