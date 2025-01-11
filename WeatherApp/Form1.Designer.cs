@@ -33,7 +33,7 @@ partial class Form1
         this.BackColor = Color.LightSteelBlue;
 
         this.pictureBox = new System.Windows.Forms.PictureBox();
-        this.pictureBox.Image = Image.FromFile("img/funny-cat-12.jpg");
+        this.pictureBox.Image = Image.FromFile("img/mainmenubg.jpg");
         this.pictureBox.Location = new System.Drawing.Point(0, 0);
         this.pictureBox.Size = new System.Drawing.Size(this.ClientSize.Width / 2, this.ClientSize.Height);
         this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

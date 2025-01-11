@@ -23,7 +23,9 @@ public class User
 
     public string GetUserConfigFile()
     {
-        return Path.Combine("user_configs", $"{Username}_config.xml");
+        //return Path.Combine("user_configs", $"{Username}_config.xml");
+        string userConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user_configs", $"{Username}_config.xml");
+        return userConfigPath;
     }
     
     public static List<User> LoadUsers()
