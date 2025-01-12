@@ -78,9 +78,6 @@ namespace WeatherApp
             }
         }
         
-        /// <summary>
-        /// Represents the user configuration structure.
-        /// </summary>
         private class UserConfig
         {
             public string EnteredCountry { get; set; }
