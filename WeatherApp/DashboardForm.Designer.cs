@@ -11,7 +11,7 @@ namespace WeatherApp
         private Label lblWelcome;
         private Button btnLogout;
         private Button btnFetchWeather;
-        private RichTextBox rtbWeatherInfo;
+        private RichTextBox weatherInfoBox;
         private Button btnSaveConfig;
         private Button btnLoadConfig;
         private TextBox txtCity;
@@ -35,7 +35,7 @@ namespace WeatherApp
             this.lblWelcome = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnFetchWeather = new System.Windows.Forms.Button();
-            this.rtbWeatherInfo = new System.Windows.Forms.RichTextBox();
+            this.weatherInfoBox = new System.Windows.Forms.RichTextBox();
             this.btnSaveConfig = new System.Windows.Forms.Button();
             this.btnLoadConfig = new System.Windows.Forms.Button();
             this.txtCity = new System.Windows.Forms.TextBox();
@@ -70,34 +70,41 @@ namespace WeatherApp
             this.tableLayoutPanel.Controls.Add(this.btnFetchWeather, 0, 3);
             this.tableLayoutPanel.Controls.Add(this.btnSaveConfig, 1, 3);
             this.tableLayoutPanel.Controls.Add(this.btnLoadConfig, 2, 3);
-            this.tableLayoutPanel.Controls.Add(this.rtbWeatherInfo, 0, 4);
-            this.tableLayoutPanel.SetColumnSpan(this.rtbWeatherInfo, 3);
+            this.tableLayoutPanel.Controls.Add(this.weatherInfoBox, 0, 4);
+            this.tableLayoutPanel.SetColumnSpan(this.weatherInfoBox, 3);
             this.tableLayoutPanel.Controls.Add(this.btnLogout, 1, 5);
 
+            // country input field
             this.txtCountry.Size = new System.Drawing.Size(200, 28);
             this.txtCountry.PlaceholderText = "Enter Country";
 
+            // city input field
             this.txtCity.Size = new System.Drawing.Size(200, 28);
             this.txtCity.PlaceholderText = "Enter City";
 
+            // fetch weather button
             this.btnFetchWeather.Text = "Get Weather";
             this.btnFetchWeather.UseVisualStyleBackColor = true;
             this.btnFetchWeather.Click += new System.EventHandler(this.BtnFetchWeather_Click);
 
+            // save config button
             this.btnSaveConfig.Text = "Save Config";
             this.btnSaveConfig.BackColor = Color.LightBlue;
             this.btnSaveConfig.UseVisualStyleBackColor = true;
             this.btnSaveConfig.Click += new System.EventHandler(this.BtnSaveConfig_Click);
 
+            // load config button
             this.btnLoadConfig.Text = "Load Config";
             this.btnLoadConfig.UseVisualStyleBackColor = true;
             this.btnLoadConfig.Click += new System.EventHandler(this.BtnLoadConfig_Click);
 
-            this.rtbWeatherInfo.ReadOnly = true;
-            this.rtbWeatherInfo.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.rtbWeatherInfo.ScrollBars = RichTextBoxScrollBars.Vertical;
-            this.rtbWeatherInfo.Dock = DockStyle.Fill;
+            // fetched weather info
+            this.weatherInfoBox.ReadOnly = true;
+            this.weatherInfoBox.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.weatherInfoBox.ScrollBars = RichTextBoxScrollBars.Vertical;
+            this.weatherInfoBox.Dock = DockStyle.Fill;
 
+            // logout button
             this.btnLogout.Text = "Logout";
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.BtnLogout_Click);

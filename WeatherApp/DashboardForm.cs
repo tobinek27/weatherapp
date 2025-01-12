@@ -56,15 +56,15 @@ namespace WeatherApp
                 string.IsNullOrWhiteSpace(enteredCountry) ? enteredCity : 
                 $"{enteredCity}, {enteredCountry}";
 
-            btnFetchWeather.Text = "Fetching...";
+            btnFetchWeather.Text = "fetching...";
             btnFetchWeather.Enabled = false;
-            rtbWeatherInfo.Text = "fetching the weather... please wait";
+            weatherInfoBox.Text = "fetching the weather... please wait";
 
             try
             {
                 string weatherData = await FetchWeatherAsync(location);
                 string formattedData = FormatWeatherData(location, weatherData);
-                rtbWeatherInfo.Text = formattedData;
+                weatherInfoBox.Text = formattedData;
             }
             catch (Exception ex)
             {
@@ -90,7 +90,7 @@ namespace WeatherApp
             HttpResponseMessage response = await client.GetAsync(apiUrl);
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("failed to fetch weather data.");
+                throw new Exception("failed to fetch weather data");
             }
 
             return await response.Content.ReadAsStringAsync();
