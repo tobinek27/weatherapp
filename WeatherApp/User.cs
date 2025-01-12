@@ -31,7 +31,7 @@ public class User
     /// <returns>The full path of the user's configuration file.</returns>
     public string GetUserConfigFile()
     {
-        string userConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user_configs", $"{Username}_config.xml");
+        string userConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user_configs", $"{Username}_config.json");
         return userConfigPath;
     }
     

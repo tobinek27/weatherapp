@@ -1,62 +1,7 @@
 [
   {
-    "Username": "johndoe",
-    "PasswordHash": "ltljLzY1ZMwwMlIUCc8iqFLyAy7sCZ7VlnwNAAzsYHo=",
-    "LoggedIn": false
-  },
-  {
-    "Username": "janedoe",
-    "PasswordHash": "ltljLzY1ZMwwMlIUCc8iqFLyAy7sCZ7VlnwNAAzsYHo=",
-    "LoggedIn": false
-  },
-  {
     "Username": "test",
     "PasswordHash": "n4bQgYhMfWWaL\u002BqgxVrQFaO/TxsrC4Is0V1sFbDwCgg=",
-    "LoggedIn": false
-  },
-  {
-    "Username": "testt",
-    "PasswordHash": "gi5U033TfYN3btiqwF5FeOiyAdjz\u002BjZr3GC3Uii8g18=",
-    "LoggedIn": false
-  },
-  {
-    "Username": "test2",
-    "PasswordHash": "YDA64iuZiGG847KPM\u002B7BvnWKITyGyTwHbb6fVYwRx1I=",
-    "LoggedIn": false
-  },
-  {
-    "Username": "tttt",
-    "PasswordHash": "sj/LiCDlZ9EUP0oVz\u002BrwS6Zguv2J7rSW6Z/9i9EHn3E=",
-    "LoggedIn": false
-  },
-  {
-    "Username": "testik",
-    "PasswordHash": "T2tJvNo\u002B7EWluZb09eeayE6YlDQn4IXN9WxA28JSqVU=",
-    "LoggedIn": false
-  },
-  {
-    "Username": "teodor",
-    "PasswordHash": "SUHWmT7pVTKqMXEYfsBj84uEIdk13vwBuqMgABL6Op4=",
-    "LoggedIn": false
-  },
-  {
-    "Username": "rrr",
-    "PasswordHash": "ErDw3K77EMAqg6qa2wJZeN21US3ATrOd9oEcamv5dww=",
-    "LoggedIn": false
-  },
-  {
-    "Username": "ttt",
-    "PasswordHash": "P3xUVx\u002Bu4CTj/WhgPFyV9qTI73OjmIQLl08/V3N6EW8=",
-    "LoggedIn": false
-  },
-  {
-    "Username": "xeodor",
-    "PasswordHash": "O1xzfUJBtBkaqEOlE41aaA2qiZO\u002BW1kTN5X93nsPE5A=",
-    "LoggedIn": false
-  },
-  {
-    "Username": "rrrr",
-    "PasswordHash": "Qgn88HAiYoQOk/QKv03wEnIoOElN92D/BKoc5SmobxY=",
     "LoggedIn": false
   }
 ]

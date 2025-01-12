@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -78,6 +79,15 @@ namespace WeatherApp
         }
         
         /// <summary>
+        /// Represents the user configuration structure.
+        /// </summary>
+        private class UserConfig
+        {
+            public string EnteredCountry { get; set; }
+            public string EnteredCity { get; set; }
+        }
+        
+        /// <summary>
         /// Asynchronously fetches weather data for the specified location from the API.
         /// </summary>
         /// <param name="location">The location to fetch weather data for.</param>
@@ -133,7 +143,7 @@ namespace WeatherApp
         {
             string enteredCountry = txtCountry.Text.Trim();
             string enteredCity = txtCity.Text.Trim();
-    
+
             if (string.IsNullOrWhiteSpace(enteredCountry) && string.IsNullOrWhiteSpace(enteredCity))
             {
                 MessageBox.Show("Please enter a city or country to save.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -142,18 +152,22 @@ namespace WeatherApp
 
             try
             {
-                string directoryPath = Path.GetDirectoryName(_activeUser.GetUserConfigFile());
+                string configFilePath = _activeUser.GetUserConfigFile();
+                string directoryPath = Path.GetDirectoryName(configFilePath);
+
                 if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
                 }
 
-                var config = new XElement("Configuration",
-                    new XElement("EnteredCountry", enteredCountry),
-                    new XElement("EnteredCity", enteredCity)
-                );
+                var config = new UserConfig
+                {
+                    EnteredCountry = enteredCountry,
+                    EnteredCity = enteredCity
+                };
 
-                config.Save(_activeUser.GetUserConfigFile());
+                string jsonContent = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(configFilePath, jsonContent);
 
                 MessageBox.Show("Configuration saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -173,15 +187,14 @@ namespace WeatherApp
 
             try
             {
-                XElement config = XElement.Load(configFilePath);
-                string savedCountry = config.Element("EnteredCountry")?.Value;
-                string savedCity = config.Element("EnteredCity")?.Value;
+                string jsonContent = File.ReadAllText(configFilePath);
+                var config = JsonSerializer.Deserialize<UserConfig>(jsonContent);
 
-                if (!string.IsNullOrWhiteSpace(savedCountry))
-                    txtCountry.Text = savedCountry;
+                if (!string.IsNullOrWhiteSpace(config?.EnteredCountry))
+                    txtCountry.Text = config.EnteredCountry;
 
-                if (!string.IsNullOrWhiteSpace(savedCity))
-                    txtCity.Text = savedCity;
+                if (!string.IsNullOrWhiteSpace(config?.EnteredCity))
+                    txtCity.Text = config.EnteredCity;
             }
             catch (Exception ex)
             {
