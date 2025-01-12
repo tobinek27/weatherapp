@@ -14,6 +14,12 @@ namespace WeatherApp
             User.InitializeUserFile();
         }
 
+        /// <summary>
+        /// Handles the registration process when the Register button is clicked.
+        /// Validates the input, checks for existing usernames, and saves new user data.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void BtnRegister_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text.Trim();
@@ -42,6 +48,12 @@ namespace WeatherApp
             txtPassword.Text = string.Empty;
         }
         
+        /// <summary>
+        /// Handles the login process when the Login button is clicked.
+        /// Validates the input, checks user credentials, and opens the dashboard if login is successful.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text.Trim();
@@ -71,6 +83,11 @@ namespace WeatherApp
             this.Hide();
         }
         
+        /// <summary>
+        /// Exits the application when the Quit button is clicked.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void BtnQuit_Click(object sender, EventArgs e)
         {
             Application.Exit();

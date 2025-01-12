@@ -20,6 +20,10 @@ namespace WeatherApp
             SetupCountryAutocomplete();
         }
         
+        /// <summary>
+        /// Sets up the autocomplete feature for the country input field
+        /// with a predefined list of countries.
+        /// </summary>
         private void SetupCountryAutocomplete()
         {
             var countries = new[] { "Czechia", "USA", "Canada", "Germany", "France", "Spain", "India", "Japan"};
@@ -31,6 +35,12 @@ namespace WeatherApp
             txtCountry.AutoCompleteCustomSource = autoComplete;
         }
 
+        /// <summary>
+        /// Handles the click event of the Fetch Weather button.
+        /// Fetches and displays weather data for the entered location.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private async void BtnFetchWeather_Click(object sender, EventArgs e)
         {
             string enteredCountry = txtCountry.Text.Trim();
@@ -67,6 +77,11 @@ namespace WeatherApp
             }
         }
         
+        /// <summary>
+        /// Asynchronously fetches weather data for the specified location from the API.
+        /// </summary>
+        /// <param name="location">The location to fetch weather data for.</param>
+        /// <returns>The raw weather data as a string.</returns>
         private async Task<string> FetchWeatherAsync(string location)
         {
             string apiUrl = $"https://wttr.in/{Uri.EscapeDataString(location)}?format=4";
@@ -81,6 +96,12 @@ namespace WeatherApp
             return await response.Content.ReadAsStringAsync();
         }
 
+        /// <summary>
+        /// Formats raw weather data into a more readable format.
+        /// </summary>
+        /// <param name="location">The location associated with the weather data.</param>
+        /// <param name="weatherData">The raw weather data string.</param>
+        /// <returns>A formatted weather data string.</returns>
         private string FormatWeatherData(string location, string weatherData)
         {
             try
@@ -102,6 +123,12 @@ namespace WeatherApp
             }
         }
 
+        /// <summary>
+        /// Handles the click event of the Save Config button.
+        /// Saves the entered country and city inputs into the user's user_config file
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void BtnSaveConfig_Click(object sender, EventArgs e)
         {
             string enteredCountry = txtCountry.Text.Trim();
@@ -136,6 +163,9 @@ namespace WeatherApp
             }
         }
         
+        /// <summary>
+        /// Loads the user's saved configuration from the user_config file, and fill the two input fields.
+        /// </summary>
         private void LoadConfiguration()
         {
             string configFilePath = _activeUser.GetUserConfigFile();
@@ -159,11 +189,23 @@ namespace WeatherApp
             }
         }
 
+        /// <summary>
+        /// Handles the click event of the Load Config button.
+        /// Loads the saved user_config configuration for the current user.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void BtnLoadConfig_Click(object sender, EventArgs e)
         {
             LoadConfiguration();
         }
 
+        /// <summary>
+        /// Handles the click event of the Logout button.
+        /// Logs the user out by closing the dashboard and reopening the login form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The event data.</param>
         private void BtnLogout_Click(object sender, EventArgs e)
         {
             Form1 loginForm = new Form1();

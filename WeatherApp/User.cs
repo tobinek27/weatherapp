@@ -13,15 +13,10 @@ public class User
     public string PasswordHash { get; set; }
     public bool LoggedIn { get; set; }
 
-    //private static readonly List<User> users = new();
-
-    /*public static bool Login(string username, string password)
-    {
-        string passwordHash = HashPassword(password);
-        return users.Any(u => u.Username == username && u.PasswordHash == passwordHash);
-    }*/
-
-    public static void InitializeUserFile() // move this method into the User.cs class
+    /// <summary>
+    /// Initializes the user login file by creating an empty JSON file if it does not exist.
+    /// </summary>
+    public static void InitializeUserFile()
     {
         if (!File.Exists("userlogins.json"))
         {
@@ -30,13 +25,21 @@ public class User
         }
     }
     
+    /// <summary>
+    /// Returns the path to the user's configuration file.
+    /// </summary>
+    /// <returns>The full path of the user's configuration file.</returns>
     public string GetUserConfigFile()
     {
-        //return Path.Combine("user_configs", $"{Username}_config.xml");
         string userConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user_configs", $"{Username}_config.xml");
         return userConfigPath;
     }
     
+    /// <summary>
+    /// Loads the list of users from the "userlogins.json" file.
+    /// If the file does not exist, returns an empty user list.
+    /// </summary>
+    /// <returns>A list of users loaded from the JSON file.</returns>
     public static List<User> LoadUsers()
     {
         if (!File.Exists("userlogins.json"))
@@ -46,12 +49,21 @@ public class User
         return JsonSerializer.Deserialize<List<User>>(jsonData) ?? new List<User>();
     }
     
+    /// <summary>
+    /// Saves the list of users to the "userlogins.json" file in JSON format.
+    /// </summary>
+    /// <param name="users">The list of users to save.</param>
     public static void SaveUsers(List<User> users)
     {
         string jsonData = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText("userlogins.json", jsonData);
     }
 
+    /// <summary>
+    /// Hashes a plain-text password using the SHA-256 algorithm.
+    /// </summary>
+    /// <param name="password">The plain-text password to hash.</param>
+    /// <returns>The hashed password as a Base64-encoded string.</returns>
     public static string HashPassword(string password)
     {
         using (SHA256 sha256 = SHA256.Create())
@@ -62,12 +74,19 @@ public class User
         }
     }
 
+    /// <summary>
+    /// Verifies a plain-text password against a stored hashed password.
+    /// </summary>
+    /// <param name="password">The plain-text password to verify.</param>
+    /// <param name="storedPasswordHash">The stored hashed password for comparison.</param>
+    /// <returns>True if the password matches the stored hash, false otherwise.</returns>
     public static bool VerifyPassword(string password, string storedPasswordHash)
     {
         string hashedPassword = HashPassword(password);
         return hashedPassword == storedPasswordHash;
     }
 
+    // default constructor
     public User()
     {
     }
